@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kosmos_Vista — Статья</title>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#07070d;
+    --bg2:#0d0d1a;
+    --card:#12122a;
+    --accent:#7c5cff;
+    --accent2:#22d3ee;
+    --text:#e8e8f5;
+    --muted:#9a9ab5;
+    --radius:20px;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box}
+
+  html{scroll-behavior:smooth}
+
+  body{
+    font-family:'Manrope',sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.7;
+    overflow-x:hidden;
+  }
+
+  .glow{
+    position:fixed;
+    border-radius:50%;
+    filter:blur(120px);
+    opacity:.45;
+    z-index:0;
+    pointer-events:none;
+    animation:float 14s ease-in-out infinite;
+  }
+  .glow-1{width:500px;height:500px;background:#5b2bd6;top:-150px;left:-120px}
+  .glow-2{width:420px;height:420px;background:#0e7490;bottom:-160px;right:-120px;animation-delay:-7s}
+  @keyframes float{
+    0%,100%{transform:translateY(0) scale(1)}
+    50%{transform:translateY(40px) scale(1.1)}
+  }
+
+  .container{max-width:900px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
+
+  /* ---------- Шапка ---------- */
+  header{
+    padding:100px 0 70px;
+    text-align:center;
+  }
+
+  .badge{
+    display:inline-block;
+    padding:8px 18px;
+    border-radius:999px;
+    background:rgba(124,92,255,.12);
+    border:1px solid rgba(124,92,255,.4);
+    color:#b6a6ff;
+    font-size:14px;
+    font-weight:700;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    margin-bottom:28px;
+    animation:fadeUp .8s ease both;
+  }
+
+  h1{
+    font-family:'Unbounded',sans-serif;
+    font-weight:900;
+    font-size:clamp(2.2rem, 6vw, 4rem);
+    line-height:1.1;
+    letter-spacing:-1px;
+    background:linear-gradient(90deg,#fff 20%,var(--accent2) 60%,var(--accent) 100%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+    animation:fadeUp .8s .1s ease both;
+  }
+
+  .subtitle{
+    margin-top:22px;
+    font-size:clamp(1rem,2.2vw,1.2rem);
+    color:var(--muted);
+    max-width:640px;
+    margin-left:auto;
+    margin-right:auto;
+    animation:fadeUp .8s .2s ease both;
+  }
+
+  .avatar{
+    width:96px;height:96px;
+    margin:36px auto 0;
+    border-radius:50%;
+    display:grid;place-items:center;
+    font-family:'Unbounded',sans-serif;
+    font-size:38px;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));
+    color:#fff;
+    box-shadow:0 0 0 6px rgba(124,92,255,.15),0 20px 50px rgba(124,92,255,.35);
+    animation:fadeUp .8s .3s ease both;
+  }
+
+  @keyframes fadeUp{
+    from{opacity:0;transform:translateY(28px)}
+    to{opacity:1;transform:translateY(0)}
+  }
+
+  article{
+    background:linear-gradient(180deg, rgba(18,18,42,.85), rgba(13,13,26,.9));
+    border:1px solid rgba(124,92,255,.18);
+    border-radius:var(--radius);
+    padding:clamp(28px,5vw,56px);
+    backdrop-filter:blur(12px);
+    box-shadow:0 30px 80px rgba(0,0,0,.55);
+    animation:fadeUp .9s .4s ease both;
+  }
+
+  article p{
+    color:#c8c8dd;
+    font-size:1.05rem;
+    margin-bottom:1.4em;
+  }
+
+  article p:last-child{margin-bottom:0}
+
+  article strong{color:#fff}
+
+  .lead{
+    font-size:1.2rem !important;
+    color:var(--text) !important;
+    border-left:3px solid var(--accent);
+    padding-left:20px;
+  }
+
+  .facts{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:18px;
+    margin:44px 0;
+  }
+
+  .fact{
+    background:rgba(124,92,255,.07);
+    border:1px solid rgba(124,92,255,.22);
+    border-radius:16px;
+    padding:26px 22px;
+    transition:transform .3s, border-color .3s, background .3s;
+  }
+
+  .fact:hover{
+    transform:translateY(-6px);
+    border-color:var(--accent);
+    background:rgba(124,92,255,.14);
+  }
+
+  .fact .num{
+    font-family:'Unbounded',sans-serif;
+    font-size:2.2rem;
+    font-weight:900;
+    background:linear-gradient(90deg,var(--accent2),var(--accent));
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+  }
+
+  .fact .label{
+    color:var(--muted);
+    font-size:.95rem;
+    margin-top:6px;
+  }
+
+  blockquote{
+    margin:40px 0;
+    padding:32px 28px;
+    border-radius:16px;
+    background:linear-gradient(135deg,rgba(124,92,255,.18),rgba(34,211,238,.1));
+    border-left:4px solid var(--accent2);
+    font-family:'Unbounded',sans-serif;
+    font-size:1.15rem;
+    line-height:1.6;
+    color:#fff;
+    position:relative;
+  }
+
+  blockquote::before{
+    content:'“';
+    position:absolute;
+    top:-10px;left:18px;
+    font-size:5rem;
+    color:rgba(124,92,255,.4);
+    font-family:Georgia,serif;
+    line-height:1;
+  }
+
+  .tags{
+    display:flex;flex-wrap:wrap;gap:10px;
+    margin:36px 0 8px;
+  }
+
+  .tag{
+    padding:8px 18px;
+    border-radius:999px;
+    font-size:.9rem;
+    font-weight:700;
+    background:rgba(34,211,238,.1);
+    border:1px solid rgba(34,211,238,.35);
+    color:#7ee8fa;
+  }
+
+  footer{
+    text-align:center;
+    padding:60px 24px 80px;
+    color:var(--muted);
+    font-size:.95rem;
+  }
+
+  footer .name{
+    font-family:'Unbounded',sans-serif;
+    font-weight:700;
+    background:linear-gradient(90deg,var(--accent2),var(--accent));
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+  }
+
+  #progress{
+    position:fixed;top:0;left:0;height:3px;width:0;
+    background:linear-gradient(90deg,var(--accent2),var(--accent));
+    z-index:100;
+    transition:width .1s linear;
+  }
+
+  max-width:600px{
+    header{padding:70px 0 50px}
+    blockquote{font-size:1rem;padding:26px 20px}
+  }
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+<div class="glow glow-1"></div>
+<div class="glow glow-2"></div>
+
+<header>
+  <div class="container">
+    <div class="badge">Статья · Kosmos_Vista</div>
+    <h1>Игры, которые дарят детство</h1>
+    <p class="subtitle">История разработчика Kosmos_Vista о том, как создавать радость через Unity и не только.</p>
+    <div class="avatar">K</div>
+  </div>
+</header>
+
+<main class="container">
+  <article>
+
+    <p class="lead">Меня зовут <strong>Kosmos_Vista</strong>, и я занимаюсь разработкой игр на движке Unity. Моя главная цель — подарить другим людям лучшее детство, вызывая у них радость от игры.</p>
+
+    <p>Каждый проект для меня — это не просто набор механик и уровней, а маленький мир, в который хочется возвращаться. Я верю, что хорошая игра способна вернуть взрослым ощущение чуда, а детям — подарить воспоминания, которые останутся с ними на всю жизнь.</p>
+
+    <div class="facts">
+      <div class="fact">
+        <div class="num">100</div>
+        <div class="label">игр запланировано к разработке</div>
+      </div>
+      <div class="fact">
+        <div class="num">Unity</div>
+        <div class="label">основной движок разработки</div>
+      </div>
+      <div class="fact">
+        <div class="num">UE</div>
+        <div class="label">дополнительный опыт в Unreal Engine</div>
+      </div>
+    </div>
+
+    <p>Я планирую разработать <strong>100 игр</strong>, чтобы обеспечить игроков разнообразным контентом. Для кого-то это будет уютная головоломка на вечер, для кого-то — динамичный экшен, а для кого-то — история, которая заставит улыбнуться. Разнообразие — ключ к тому, чтобы каждый нашёл что-то своё.</p>
+
+    <p>У меня есть опыт создания игр на различных движках, таких как <strong>Unity</strong> и <strong>Unreal Engine</strong>. Это позволяет мне выбирать инструмент под задачу: где-то важна гибкость и скорость итераций, где-то — мощная графика и погружение.</p>
+
+    <blockquote>Мне будет приятно, если мои игры принесут игрокам радость и позитивные эмоции.</blockquote>
+
+    <p>Это не просто слова — это принцип, по которому я строю каждый свой проект. Ведь лучшее детство — это не возраст, а состояние души, в которое хочется возвращаться снова и снова.</p>
+
+    <div class="tags">
+      <span class="tag">Unity</span>
+      <span class="tag">Unreal Engine</span>
+      <span class="tag">100 Games</span>
+    </div>
+
+  </article>
+</main>
+
+<footer>
+  <div class="container">
+    <p>Автор статьи — <span class="name">Kosmos_Vista</span></p>
+    <p style="margin-top:8px;font-size:.85rem;opacity:.6">Создаю игры, которые дарят радость.</p>
+  </div>
+</footer>
+
+<script>
+  const progress = document.getElementById('progress');
+  window.addEventListener('scroll', () => {
+    const h = document.documentElement;
+    const scrolled = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
+    progress.style.width = scrolled + '%';
+  });
+
+  const facts = document.querySelectorAll('.fact');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = 1;
+        e.target.style.transform = 'translateY(0)';
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  facts.forEach((f, i) => {
+    f.style.opacity = 0;
+    f.style.transform = 'translateY(24px)';
+    f.style.transition = `opacity .6s ${i * 0.12}s ease, transform .6s ${i * 0.12}s ease`;
+    io.observe(f);
+  });
+</script>
+
+</body>
+</html>
